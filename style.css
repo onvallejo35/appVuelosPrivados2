@@ -1,0 +1,546 @@
+/* ======== CONFIGURACIÓN GENERAL Y VARIABLES ======== */
+:root {
+    --primary-color: #0a2d4d; /* Azul oscuro */
+    --secondary-color: #d4af37; /* Dorado */
+    --background-color: #f4f4f4;
+    --text-color: #333;
+    --light-text-color: #fff;
+    --font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.6;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 60px;
+    color: var(--primary-color);
+}
+
+/* ======== HEADER Y NAVEGACIÓN ======== */
+.header {
+    background-color: rgba(10, 45, 77, 0.8);
+    backdrop-filter: blur(10px);
+    color: var(--light-text-color);
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+.header.scrolled {
+    background-color: var(--primary-color);
+}
+
+.navbar {
+    width: 100%;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--light-text-color);
+    text-decoration: none;
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+}
+
+.nav-menu li {
+    margin-left: 25px;
+}
+
+.nav-menu a {
+    color: var(--light-text-color);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.nav-menu a:hover {
+    color: var(--secondary-color);
+}
+
+/* ======== BOTONES ======== */
+.btn {
+    display: inline-block;
+    padding: 12px 28px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: 2px solid var(--secondary-color);
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    color: var(--secondary-color);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--light-text-color);
+    border: 2px solid var(--light-text-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--light-text-color);
+    color: var(--primary-color);
+}
+
+/* ======== SECCIÓN HERO ======== */
+.hero {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--light-text-color);
+    background: url('https://images.unsplash.com/photo-1610642372651-fe6e7bc209ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80') no-repeat center center/cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-title {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    max-width: 800px; /* Mantiene el ancho máximo para legibilidad */
+    margin-left: auto;   /* Centra el bloque horizontalmente */
+    margin-right: auto;  /* Centra el bloque horizontalmente */
+    margin-bottom: 2rem; /* Mantiene el espacio inferior */
+}
+
+/* ======== SECCIÓN SERVICIOS ======== */
+.services-section {
+    padding: 80px 20px;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.15);
+}
+
+.service-card .service-icon {
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    padding: 20px 30px 0;
+}
+
+.service-card .service-title {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    padding: 10px 30px;
+}
+
+.service-card .service-description {
+    padding: 0 30px 20px;
+    flex-grow: 1;
+}
+
+.service-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    margin-top: auto;
+}
+
+/* Contenedor para la imagen dentro de la tarjeta de servicio */
+.service-image-container {
+    /* Mueve el contenedor al final de la tarjeta */
+    margin-top: auto; 
+    /* Añade padding para que la imagen no toque los bordes */
+    padding: 0 30px 30px 30px; 
+}
+
+/* Estilos de la imagen para que sea responsiva y se ajuste al contenedor */
+.service-card img {
+    display: block;
+    width: 100%;      /* La imagen ocupa todo el ancho de su contenedor */
+    height: 200px;    /* ¡Aquí está la clave! Altura fija para todas las imágenes. */
+    object-fit: cover; /* Rellena el espacio sin deformar la imagen (recorta el exceso) */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* ======== SECCIÓN CONTACTO ======== */
+.contact-section {
+    padding: 80px 0;
+    background-color: #fff;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.contact-info h3 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.contact-info ul {
+    list-style: none;
+    margin-top: 20px;
+}
+
+.contact-info ul li {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.contact-info ul li i {
+    color: var(--secondary-color);
+    margin-right: 15px;
+    width: 20px;
+}
+
+.contact-form .form-group {
+    margin-bottom: 20px;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.contact-form input,
+.contact-form textarea,
+.contact-form select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.contact-form button {
+    width: 100%;
+}
+
+/* ======== FOOTER ======== */
+.footer {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* ======== ESTILOS PARA MENÚ HAMBURGUESA (NUEVO) ======== */
+.hamburger-menu {
+    display: none; /* Oculto en pantallas grandes */
+    cursor: pointer;
+}
+
+.hamburger-menu .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: var(--light-text-color);
+    transition: all 0.3s ease-in-out;
+}
+
+/* ======== MODIFICACIONES PARA RESPONSIVE ======== */
+@media (max-width: 768px) {
+    /* Ocultamos el botón 'Cotizar Ahora' de la barra de navegación */
+    .nav-cta {
+        display: none;
+    }
+
+    /* Mostramos el icono de la hamburguesa */
+    .hamburger-menu {
+        display: block;
+    }
+    
+    /* Animación del icono a una 'X' cuando está activo */
+    .hamburger-menu.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger-menu.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger-menu.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* Aquí reemplazamos el 'display: none' que tenías antes por esto */
+    .nav-menu {
+        position: fixed;
+        left: -100%; /* Empieza fuera de la pantalla */
+        top: 70px; /* Justo debajo del header */
+        flex-direction: column;
+        background-color: var(--primary-color);
+        width: 100%;
+        text-align: center;
+        transition: left 0.3s ease;
+        z-index: 999;
+    }
+
+    .nav-menu.active {
+        left: 0; /* Aparece en la pantalla */
+    }
+
+    .nav-menu li {
+        margin: 0;
+        padding: 1.5rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .nav-menu li:last-child {
+        border-bottom: none;
+    }
+
+    /* Ajustes que tenías antes, mantenemos el resto */
+    .hero-title {
+        font-size: 2.8rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ======== SECCIÓN FLOTA (NUEVA) ======== */
+.fleet-section {
+    padding: 80px 0;
+    background-color: var(--background-color);
+}
+
+.fleet-category-title {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-top: 40px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.fleet-category-title:first-of-type {
+    margin-top: 0;
+}
+
+.fleet-grid {
+    display: grid;
+    /* En pantallas más grandes cabrán 2, en móviles 1 */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.fleet-card {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fleet-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.12);
+}
+
+.fleet-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block; /* Asegura que la imagen sea un bloque */
+}
+
+.fleet-card-info {
+    padding: 25px;
+    flex-grow: 1; /* Permite que este div ocupe el espacio restante */
+    display: flex;
+    flex-direction: column;
+}
+
+.fleet-aircraft-name {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.fleet-description {
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex-grow: 1; /* Empuja las especificaciones hacia abajo */
+}
+
+.fleet-specs {
+    list-style: none;
+    padding: 0;
+    margin-top: auto; /* Alinea al final si las descripciones varían */
+}
+
+.fleet-specs li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+.fleet-specs li:last-child {
+    margin-bottom: 0;
+}
+
+.fleet-specs i {
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+    margin-right: 15px;
+    width: 20px;
+    text-align: center;
+}
+
+/* Ajuste responsive para móviles muy pequeños */
+@media (max-width: 400px) {
+    .fleet-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ======== SECCIÓN NOSOTROS (NUEVA) ======== */
+.about-section {
+    padding: 80px 0;
+    background-color: #fff; /* Fondo blanco para contrastar con las otras secciones */
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr; /* Columna de texto un poco más ancha */
+    gap: 60px;
+    align-items: center;
+}
+
+.about-image-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 45, 77, 0.15);
+}
+
+.about-tagline {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    line-height: 1.3;
+}
+
+.about-content p {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+.about-values-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.about-values-list li {
+    display: flex;
+    align-items: flex-start; /* Alinea el icono con la primera línea de texto */
+    margin-bottom: 25px;
+}
+
+.about-values-list li:last-child {
+    margin-bottom: 0;
+}
+
+.about-values-list i {
+    color: var(--secondary-color);
+    font-size: 2rem;
+    margin-right: 20px;
+    margin-top: 5px;
+    width: 35px;
+}
+
+.about-values-list div strong {
+    display: block;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+/* ======== AJUSTE RESPONSIVE PARA "NOSOTROS" ======== */
+@media (max-width: 992px) {
+    .about-grid {
+        grid-template-columns: 1fr; /* Cambia a una sola columna */
+        gap: 40px;
+    }
+}
